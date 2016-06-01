@@ -6,7 +6,8 @@ $col-bg: #f0f0f0;
 $col-link: #ffffff;
 $col-border: #e2e2e2;
 $col-header-shade: rgba(0, 0, 0, 0.15);
-$col-alert: #f0ff00;
+
+$col-highlight: #f5ad28;
 
 $sidebar-width: 300px;
 $alert-height: 33px;
@@ -26,41 +27,15 @@ $html-selector: 'html' + if(type-of($subdomain) == string and str-length($subdom
 
 #{$html-selector} {
   body {
+    
+    // base background
     background-color: $col-bg;
     
+    // HEADER LAYOUT
+    // header base
     #header {
       height: $header-height;
       background: #000 url(%%800x200%%) no-repeat right;
-      
-      #header-bottom-left {
-        
-        #header-img {
-          position: absolute;
-          top: 20px;
-          left: 20px;
-        }
-        
-        span.hover.pagename.redditname {
-          display: block;
-        }
-        
-        .tabmenu {
-          
-          background-color: $col-header-shade;
-          width: 100%;
-          
-          position: absolute;
-          bottom: 0;
-          
-          >li {
-            
-            >a {
-              background: none;
-              border: none;
-            }
-          }
-        }
-      }
       
       #header-bottom-right, .tabmenu {
         font-size: $tabmenu-fontsize;
@@ -72,8 +47,38 @@ $html-selector: 'html' + if(type-of($subdomain) == string and str-length($subdom
         background: none;
       }
     }
+    // header tabmenu
+    #header-bottom-left {
+      
+      span.hover.pagename.redditname {
+        //pushes the neighbor elements onto newlines
+        display: block;
+      }
+      
+      .tabmenu {
+        background-color: $col-header-shade;
+        width: 100%;
+        
+        position: absolute;
+        bottom: 0;
+        
+        >li >a {
+          background: none;
+          border: none;
+        }
+      }
+    }
+    // header snoo image
+    #header-img {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    // END HEADER LAYOUT
     
+    // SIDEBAR LAYOUT
     >.side {
+      background: none;
       width: $sidebar-width;
       margin: $pad-main;
       
@@ -82,7 +87,7 @@ $html-selector: 'html' + if(type-of($subdomain) == string and str-length($subdom
         font-size: 12px;
         
         padding: $pad-main $pad-link;
-        background: $col-alert;
+        background: $col-highlight;
         border: 1px solid $col-border;
         
         position: absolute;
@@ -92,6 +97,7 @@ $html-selector: 'html' + if(type-of($subdomain) == string and str-length($subdom
       }
     }
     
+    // CONTENT LAYOUT
     >.content {
       margin: 0;
       padding: ($pad-main + $alert-height) ($pad-main * 2 + $sidebar-width) $pad-main $pad-main;
