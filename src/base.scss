@@ -1,0 +1,108 @@
+$champion: 'Zyra';
+$prefix: 'xx';
+$suffix: '';
+
+$col-bg: #f0f0f0;
+$col-link: #ffffff;
+$col-border: #e2e2e2;
+$col-header-shade: rgba(0, 0, 0, 0.15);
+$col-alert: #f0ff00;
+
+$sidebar-width: 300px;
+$alert-height: 33px;
+
+$header-height: 200px;
+
+$pad-main: 8px;
+$pad-link: 15px;
+
+$tabmenu-fontsize: 12px;
+$tabmenu-lineheight: 30px;
+
+// MAIN //
+$subdomain: if(type-of($suffix) == string and str-length($suffix) > 0, $prefix + '-' + $suffix, $prefix);
+$html-selector: 'html' + if(type-of($subdomain) == string and str-length($subdomain) > 0, '[lang*=' + $subdomain + ']', '');
+
+
+#{$html-selector} {
+  body {
+    background-color: $col-bg;
+    
+    #header {
+      height: $header-height;
+      background: #000 url(%%800x200%%) no-repeat right;
+      
+      #header-bottom-left {
+        
+        #header-img {
+          position: absolute;
+          top: 20px;
+          left: 20px;
+        }
+        
+        span.hover.pagename.redditname {
+          display: block;
+        }
+        
+        .tabmenu {
+          
+          background-color: $col-header-shade;
+          width: 100%;
+          
+          position: absolute;
+          bottom: 0;
+          
+          >li {
+            
+            >a {
+              background: none;
+              border: none;
+            }
+          }
+        }
+      }
+      
+      #header-bottom-right, .tabmenu {
+        font-size: $tabmenu-fontsize;
+        line-height: $tabmenu-lineheight;
+      }
+      
+      #header-bottom-right {
+        padding: 0;
+        background: none;
+      }
+    }
+    
+    >.side {
+      width: $sidebar-width;
+      margin: $pad-main;
+      
+      //announcement aka alert
+      .md h4:first-of-type {
+        font-size: 12px;
+        
+        padding: $pad-main $pad-link;
+        background: $col-alert;
+        border: 1px solid $col-border;
+        
+        position: absolute;
+        top: $header-height;
+        left: $pad-main;
+        right: $pad-main * 2 + $sidebar-width;
+      }
+    }
+    
+    >.content {
+      margin: 0;
+      padding: ($pad-main + $alert-height) ($pad-main * 2 + $sidebar-width) $pad-main $pad-main;
+      
+      .link {
+        padding: $pad-link 0 $pad-link 10px;
+        background: $col-link;
+        border: 1px solid $col-border;
+      }
+    }
+    
+    
+  }
+}
